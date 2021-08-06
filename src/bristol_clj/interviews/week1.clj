@@ -4,19 +4,19 @@
   (= (distinct s) (seq s)))
 
 ;; (time (all-unique (take 10000000 (range))))
-;; => "Elapsed time: 12713.697533 msecs"
+;; => "Elapsed time: 14678.398182 msecs"
 
 (defn all-unique2 [s]
   (loop [i    0
          s    s
          seen #{}]
-    (if (not= i (count s))
+    (if (not= i (count seen))
       false
-      (if (not s)
+      (if (not (seq s))
         true
         (recur (inc i)
                (rest s)
-               (into seen #{(first s)}))))))
+               (conj seen (first s)))))))
 
 ;; (time (all-unique2 (take 10000000 (range))))
-;; => "Elapsed time: 3752.900483 msecs"
+;; => "Elapsed time: 7526.651055 msecs"
