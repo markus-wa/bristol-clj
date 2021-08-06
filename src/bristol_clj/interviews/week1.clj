@@ -10,7 +10,7 @@
   (loop [i    0
          s    s
          seen #{}]
-    (if (not= i (count seen))
+    (if (seen (first s))
       false
       (if (not (seq s))
         true
